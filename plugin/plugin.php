@@ -169,7 +169,7 @@ class Mark_User_As_Spammer {
 
 			$_GET['user_id'] = (int) $_GET['user_id'];
 
-			switch( $_GET['mark_user_as_spammer']) {
+			switch( $_GET['mark_user_as_spammer'] ) {
 				case 'spammed':
 					if( $is_failure ) {
 						$message = sprintf(
