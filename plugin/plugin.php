@@ -42,16 +42,17 @@ class Mark_User_As_Spammer {
 	 * Добавляем ссылку-кнопку, чтобы помечать пользователя как спамера.
 	 */
 	public function user_row_actions( $actions, $user_object ) {
-		$spammer = get_user_meta( $user_object->ID, 'mark_user_as_spammer', true);
+		$meta = get_user_meta( $user_object->ID, 'mark_user_as_spammer', true);
 
-
-		if( $spammer['spammer'] === true ) {
+		$is_spammer = false;
+		if ( isset( $meta['spammer'] ) && $meta['spammer'] == true) {
+			$is_spammer = true;
 			$this->selectors[] = $user_object->ID;
 		}
 
 		$url = add_query_arg(
 			array(
-				'action' => $spammer['spammer'] === true ? 'mark_user_as_non_spammer' : 'mark_user_as_spammer',
+				'action' => $is_spammer ? 'mark_user_as_non_spammer' : 'mark_user_as_spammer',
 				'user_id' => $user_object->ID
 			),
 			'users.php'
@@ -59,7 +60,7 @@ class Mark_User_As_Spammer {
 
 		$url = wp_nonce_url(
 			$url,
-			($spammer['spammer'] === true ? 'mark_user_as_non_spammer_' : 'mark_user_as_spammer_') . $user_object->ID
+			($is_spammer ? 'mark_user_as_non_spammer_' : 'mark_user_as_spammer_') . $user_object->ID
 		);
 
 		$actions['spammer'] = '<a href="'
@@ -67,13 +68,13 @@ class Mark_User_As_Spammer {
 		                      . '" class="mark-user-as-spammer" title="'
 		                      .
 		                      (
-		                            $spammer['spammer'] === true ?
+		                            $is_spammer ?
 										esc_attr_x ('Unban user. He will be able to log in on site.', 'Verb. Mark user (account) like non spammer account', 'mark_user_as_spammer')
 										:
 										esc_attr_x ('Ban user. He will not be able to log in on site and get an error that his account marked as spammer.', 'Verb. Mark user (account) like spammer account', 'mark_user_as_spammer')
 		                      )
 		                      .'">'
-		                      . ($spammer['spammer'] === true ?
+		                      . ($is_spammer ?
 								_x ('Unban', 'Verb. Mark user (account) like non spammer account', 'mark_user_as_spammer')
 								:
 								_x ('Ban', 'Verb. Mark user (account) like spammer account', 'mark_user_as_spammer'))
@@ -107,7 +108,8 @@ class Mark_User_As_Spammer {
 				$user_meta = get_user_meta( $_GET['user_id'], 'mark_user_as_spammer', true );
 				// Если метаданные с именем mark_user_as_spammer уже есть у пользователя,
 				// меняем содержимое на противоположное
-				if ( !empty( $user_meta ) ) {
+				//if ( !empty( $user_meta ) ) {
+				if ( isset( $meta['spammer'] ) ) {
 					$user_meta['spammer'] = !(bool)$user_meta['spammer'];
 				}
 				// Если данных нет, создаем данные по умолчанию и смотрим какой "флажок" нужно поставить
