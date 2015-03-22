@@ -165,6 +165,8 @@ class Mark_User_As_Spammer {
 		) {
 			$is_failure = !empty( $_GET['failed'] ) ? true : false; // Was that a failure?
 
+			$_GET['user_id'] = (int) $_GET['user_id'];
+
 			switch( $_GET['mark_user_as_spammer']) {
 				case 'spammed':
 					if( $is_failure ) {
