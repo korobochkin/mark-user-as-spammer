@@ -148,12 +148,14 @@ class Mark_User_As_Spammer {
 					)
 				);
 				exit();
-
-				// И выводим сообщение об успешном блокировании (разблокировании) пользователя
 			}
 		}
 	}
 
+	/*
+	 * Выводим сообщение об успешном блокировании (разблокировании) пользователя
+	 * или ошибке, если она получилась в результате обновления update_user_meta
+	 */
 	public function admin_notices() {
 		// Logic grabbed from bbpress/includes/admin/topics.php
 		if(
