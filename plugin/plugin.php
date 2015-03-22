@@ -86,6 +86,7 @@ class Mark_User_As_Spammer {
 	 * Если да, то блокируем (разблокируем) пользователя.
 	 */
 	public function load_users_page() {
+		// Стили для заблокированных пользователей
 		add_action( 'admin_footer', array( $this, 'admin_footer' ) );
 
 		// Относится ли запрос к нашему плагину?
