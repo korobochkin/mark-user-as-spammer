@@ -68,9 +68,9 @@ class Mark_User_As_Spammer {
 		                      .
 		                      (
 		                            $spammer['spammer'] === true ?
-										_x ('Unban user. He will be able to log in on site.', 'Verb. Mark user (account) like non spammer account', 'mark_user_as_spammer')
+										esc_attr_x ('Unban user. He will be able to log in on site.', 'Verb. Mark user (account) like non spammer account', 'mark_user_as_spammer')
 										:
-										_x ('Ban user. He will not be able to log in on site and get an error that his account marked as spammer.', 'Verb. Mark user (account) like spammer account', 'mark_user_as_spammer')
+										esc_attr_x ('Ban user. He will not be able to log in on site and get an error that his account marked as spammer.', 'Verb. Mark user (account) like spammer account', 'mark_user_as_spammer')
 		                      )
 		                      .'">'
 		                      . ($spammer['spammer'] === true ?
