@@ -28,8 +28,8 @@ class Mark_User_As_Spammer {
 	 */
 	public function authenticate( $user ) {
 		if ( $user instanceof WP_User ) {
-			$spammer = get_user_meta( $user->ID, 'mark_user_as_spammer', true);
-			if( !empty( $spammer ) && $spammer['spammer'] == true ) {
+			$meta = get_user_meta( $user->ID, 'mark_user_as_spammer', true);
+			if ( isset( $meta['spammer'] ) && $meta['spammer'] == true) {
 				// Text copied from wp-includes/user.php (line 217)
 				return new WP_Error( 'spammer_account', __( '<strong>ERROR</strong>: Your account has been marked as a spammer.' ) );
 			}
