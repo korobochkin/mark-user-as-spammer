@@ -31,7 +31,7 @@ class Mark_User_As_Spammer {
 	public static function authenticate( $user ) {
 		if ( $user instanceof WP_User ) {
 			$meta = get_user_meta( $user->ID, 'mark_user_as_spammer', true);
-			if ( isset( $meta['spammer'] ) && $meta['spammer'] == true) {
+			if ( $meta['spammer'] === true) {
 				// Text copied from wp-includes/user.php (line 217)
 				return new WP_Error( 'spammer_account', __( '<strong>ERROR</strong>: Your account has been marked as a spammer.' ) );
 			}
@@ -47,8 +47,9 @@ class Mark_User_As_Spammer {
 		$meta = get_user_meta( $user_object->ID, 'mark_user_as_spammer', true);
 
 		$is_spammer = false;
-		if ( isset( $meta['spammer'] ) && $meta['spammer'] == true) {
+		if ( $meta === '1' ) {
 			$is_spammer = true;
+			unset ($meta);
 			self::$selectors[] = $user_object->ID;
 		}
 
@@ -62,7 +63,7 @@ class Mark_User_As_Spammer {
 
 		$url = wp_nonce_url(
 			$url,
-			($is_spammer ? 'mark_user_as_spammer_unban_' : 'mark_user_as_spammer_ban_') . $user_object->ID
+			( $is_spammer ? 'mark_user_as_spammer_unban_' : 'mark_user_as_spammer_ban_' ) . $user_object->ID
 		);
 
 		$actions['spammer'] = '<a href="'
@@ -113,27 +114,14 @@ class Mark_User_As_Spammer {
 				// Check nonce (WordPress dies if nonce not valid and return 403)
 				check_admin_referer( $action . '_' .  $user_id );
 
-				// Получаем метаданные
-				$user_meta = get_user_meta( $user_id, 'mark_user_as_spammer', true );
-				// Если метаданные с именем mark_user_as_spammer уже есть у пользователя,
-				// меняем содержимое на противоположное
-				//if ( !empty( $user_meta ) ) {
-				if ( isset( $meta['spammer'] ) ) {
-					$user_meta['spammer'] = ! (bool) $user_meta['spammer'];
-				}
-				// Если данных нет, создаем данные по умолчанию и смотрим какой "флажок" нужно поставить
-				else {
-					$user_meta['spammer'] = false;
-				}
-
 				switch ($action) {
 					case 'mark_user_as_spammer_ban':
-						$user_meta['spammer'] = true;
+						$user_meta = '1';
 						$message = 'spammed';
 						break;
 
 					case 'mark_user_as_spammer_unban':
-						$user_meta['spammer'] = false;
+						$user_meta = '0';
 						$message = 'unspammed';
 						break;
 				}
