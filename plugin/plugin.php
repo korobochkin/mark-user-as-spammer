@@ -57,8 +57,7 @@ class Mark_User_As_Spammer {
 			array(
 				'mark_user_as_spammer_action' => $is_spammer ? 'unban' : 'ban',
 				'user_id' => $user_object->ID
-			),
-			'users.php'
+			)
 		);
 
 		$url = wp_nonce_url(
@@ -67,7 +66,7 @@ class Mark_User_As_Spammer {
 		);
 
 		$actions['spammer'] = '<a href="'
-			. admin_url( $url )
+			. site_url( $url )
 			. '" class="mark-user-as-spammer" title="' . (
 				$is_spammer ?
 					esc_attr_x ('Unban user. He will be able to log in on site.', 'Verb. Mark user (account) like non spammer account', 'mark_user_as_spammer')
