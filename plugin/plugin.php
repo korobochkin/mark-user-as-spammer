@@ -55,7 +55,7 @@ class Mark_User_As_Spammer {
 
 		$url = add_query_arg(
 			array(
-				'action' => $is_spammer ? 'mark_user_as_spammer_unban' : 'mark_user_as_spammer_ban',
+				'mark_user_as_spammer_action' => $is_spammer ? 'unban' : 'ban',
 				'user_id' => $user_object->ID
 			),
 			'users.php'
@@ -94,9 +94,9 @@ class Mark_User_As_Spammer {
 
 		// Относится ли запрос к нашему плагину?
 		if (
-			! empty( $_GET['action'] )
+			! empty( $_GET['mark_user_as_spammer_action'] )
 			&&
-			in_array( $_GET['action'], array ('mark_user_as_spammer_unban', 'mark_user_as_spammer_ban'))
+			in_array( $_GET['mark_user_as_spammer_action'], array ('unban', 'ban'))
 			&&
 			!empty( $_GET['user_id'] )
 		) {
@@ -104,7 +104,7 @@ class Mark_User_As_Spammer {
 
 			if( $user_id > 0) {
 				// No sanitize because we use in_array above
-				$action = $_GET['action'];
+				$action = $_GET['mark_user_as_spammer_action'];
 
 				// Only users with promote_users cap can do this (by default admin and super admin)
 				if( !current_user_can( 'promote_users' ) ) {
@@ -112,15 +112,15 @@ class Mark_User_As_Spammer {
 				}
 
 				// Check nonce (WordPress dies if nonce not valid and return 403)
-				check_admin_referer( $action . '_' .  $user_id );
+				check_admin_referer( 'mark_user_as_spammer_' . $action . '_' .  $user_id,  'mark_user_as_spammer_nonce' );
 
 				switch ($action) {
-					case 'mark_user_as_spammer_ban':
+					case 'ban':
 						$user_meta = '1';
 						$message = 'spammed';
 						break;
 
-					case 'mark_user_as_spammer_unban':
+					case 'unban':
 						$user_meta = '0';
 						$message = 'unspammed';
 						break;
@@ -141,7 +141,7 @@ class Mark_User_As_Spammer {
 				// Удаляем ненужные аргументы из адреса и делаем редирект на ту же страницу, но с другими параметрами
 				wp_safe_redirect(
 					add_query_arg(
-						$message, remove_query_arg( array ( 'action', '_wpnonce' ) )
+						$message, remove_query_arg( array ( 'mark_user_as_spammer_action', 'mark_user_as_spammer_nonce' ) )
 					)
 				);
 				exit();
