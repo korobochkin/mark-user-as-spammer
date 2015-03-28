@@ -135,7 +135,7 @@ class Mark_User_As_Spammer {
 
 				$message = array( 'mark_user_as_spammer' => $message );
 				if( !$update ) {
-					$message['failed'] = 1;
+					$message['failed'] = '1';
 				}
 
 				// Удаляем ненужные аргументы из адреса и делаем редирект на ту же страницу, но с другими параметрами
