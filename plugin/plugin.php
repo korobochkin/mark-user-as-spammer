@@ -66,21 +66,20 @@ class Mark_User_As_Spammer {
 		);
 
 		$actions['spammer'] = '<a href="'
-		                      . admin_url( $url )
-		                      . '" class="mark-user-as-spammer" title="'
-		                      .
-		                      (
-		                            $is_spammer ?
-										esc_attr_x ('Unban user. He will be able to log in on site.', 'Verb. Mark user (account) like non spammer account', 'mark_user_as_spammer')
-										:
-										esc_attr_x ('Ban user. He will not be able to log in on site and get an error that his account marked as spammer.', 'Verb. Mark user (account) like spammer account', 'mark_user_as_spammer')
-		                      )
-		                      .'">'
-		                      . ($is_spammer ?
-								_x ('Unban', 'Verb. Mark user (account) like non spammer account', 'mark_user_as_spammer')
-								:
-								_x ('Ban', 'Verb. Mark user (account) like spammer account', 'mark_user_as_spammer'))
-		                      . '</a>';
+			. admin_url( $url )
+			. '" class="mark-user-as-spammer" title="' . (
+				$is_spammer ?
+					esc_attr_x ('Unban user. He will be able to log in on site.', 'Verb. Mark user (account) like non spammer account', 'mark_user_as_spammer')
+					:
+					esc_attr_x ('Ban user. He will not be able to log in on site and get an error that his account marked as spammer.', 'Verb. Mark user (account) like spammer account', 'mark_user_as_spammer')
+			) .'">'
+			. (
+				$is_spammer ?
+					_x ('Unban', 'Verb. Mark user (account) like non spammer account', 'mark_user_as_spammer')
+					:
+					_x ('Ban', 'Verb. Mark user (account) like spammer account', 'mark_user_as_spammer')
+			)
+		    . '</a>';
 		return $actions;
 	}
 
