@@ -11,16 +11,17 @@
  */
 class Mark_User_As_Spammer {
 	// TODO: переписать функции - static
-	// TODO: улучшенная фильтрация данных перед выводом
 
-	public $selectors = array();
+	public static $selectors = array();
 
-	function __construct() {
-		add_filter( 'authenticate', array( $this, 'authenticate' ), 99 );
+	private function __construct() {}
+
+	public static function run() {
+		add_filter( 'authenticate', array( __CLASS__, 'authenticate' ), 99 );
 		if ( is_admin() ) {
-			add_filter( 'user_row_actions', array( $this, 'user_row_actions' ), 10, 2);
-			add_action( 'load-users.php', array( $this, 'load_users_page' ) );
-			add_action( 'admin_notices',  array( $this, 'admin_notices' ) );
+			add_filter( 'user_row_actions', array( __CLASS__, 'user_row_actions' ), 10, 2);
+			add_action( 'load-users.php', array( __CLASS__, 'load_users_page' ) );
+			add_action( 'admin_notices',  array( __CLASS__, 'admin_notices' ) );
 		}
 	}
 
@@ -28,7 +29,7 @@ class Mark_User_As_Spammer {
 	 * В случае если у пользователя есть meta, которая говорит о том, что он спаммер мы не даем авторизацию
 	 * Таким же способом работает Multisite, если пользователь помечен как спамер.
 	 */
-	public function authenticate( $user ) {
+	public static function authenticate( $user ) {
 		if ( $user instanceof WP_User ) {
 			$meta = get_user_meta( $user->ID, 'mark_user_as_spammer', true);
 			if ( isset( $meta['spammer'] ) && $meta['spammer'] == true) {
@@ -43,13 +44,13 @@ class Mark_User_As_Spammer {
 	/*
 	 * Добавляем ссылку-кнопку, чтобы помечать пользователя как спамера.
 	 */
-	public function user_row_actions( $actions, $user_object ) {
+	public static function user_row_actions( $actions, $user_object ) {
 		$meta = get_user_meta( $user_object->ID, 'mark_user_as_spammer', true);
 
 		$is_spammer = false;
 		if ( isset( $meta['spammer'] ) && $meta['spammer'] == true) {
 			$is_spammer = true;
-			$this->selectors[] = $user_object->ID;
+			self::$selectors[] = $user_object->ID;
 		}
 
 		$url = add_query_arg(
@@ -88,9 +89,9 @@ class Mark_User_As_Spammer {
 	 * При загрузке страницы пользователей смотрим, относится ли запрос к нашему плагину.
 	 * Если да, то блокируем (разблокируем) пользователя.
 	 */
-	public function load_users_page() {
+	public static function load_users_page() {
 		// Стили для заблокированных пользователей
-		add_action( 'admin_footer', array( $this, 'admin_footer' ) );
+		add_action( 'admin_footer', array( __CLASS__, 'admin_footer' ) );
 
 		// Относится ли запрос к нашему плагину?
 		if (
@@ -166,7 +167,7 @@ class Mark_User_As_Spammer {
 	 * Выводим сообщение об успешном блокировании (разблокировании) пользователя
 	 * или ошибке, если она получилась в результате обновления update_user_meta
 	 */
-	public function admin_notices() {
+	public static function admin_notices() {
 		// Logic grabbed from bbpress/includes/admin/topics.php
 		if(
 			!empty( $_GET['mark_user_as_spammer'])
@@ -228,11 +229,11 @@ class Mark_User_As_Spammer {
 	/*
 	 * Выделяем заблокированных пользователей красным фоном (как на Мультисайте)
 	 */
-	public function admin_footer() {
-		if( !empty( $this->selectors ) ) {
+	public static function admin_footer() {
+		if( !empty( self::$selectors ) ) {
 			?>
 			<style media="all" type="text/css">
-				<?php foreach( $this->selectors as $selector) {
+				<?php foreach( self::$selectors as $selector) {
 					echo '#user-' . $selector . ',';
 				} ?> .mark-user_as_spammer_spammer { background: #faafaa; }
 			</style>
@@ -240,6 +241,5 @@ class Mark_User_As_Spammer {
 		}
 	}
 }
-
-new Mark_User_As_Spammer();
+Mark_User_As_Spammer::run();
 ?>
