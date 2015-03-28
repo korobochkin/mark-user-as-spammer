@@ -16,12 +16,18 @@ class Mark_User_As_Spammer {
 	private function __construct() {}
 
 	public static function run() {
+		add_action( 'plugins_loaded', array( __CLASS__, 'plugins_loaded' ) );
 		add_filter( 'authenticate', array( __CLASS__, 'authenticate' ), 99 );
 		if ( is_admin() ) {
 			add_filter( 'user_row_actions', array( __CLASS__, 'user_row_actions' ), 10, 2);
 			add_action( 'load-users.php', array( __CLASS__, 'load_users_page' ) );
 			add_action( 'admin_notices',  array( __CLASS__, 'admin_notices' ) );
 		}
+	}
+
+	public static function plugins_loaded() {
+		$path = dirname( plugin_basename( __FILE__ ) );
+		load_plugin_textdomain( 'mark_user_as_spammer', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 
 	/*

@@ -1,0 +1,95 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Mark User as Spammer\n"
+"POT-Creation-Date: 2015-03-29 01:09+0300\n"
+"PO-Revision-Date: 2015-03-29 01:13+0300\n"
+"Last-Translator: Kolya Korobochkin <me@korobochkin.com>\n"
+"Language-Team: Kolya Korobochkin\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;"
+"esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;"
+"esc_html_x:1,2c\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../plugin.php:36
+msgid "<strong>ERROR</strong>: Your account has been marked as a spammer."
+msgstr ""
+
+#: ../plugin.php:73
+msgctxt "Verb. Mark user (account) like non spammer account"
+msgid "Unban user. He will be able to log in on site."
+msgstr "Разблокировать пользователя. Он сможет авторизовываться на сайте."
+
+#: ../plugin.php:75
+msgctxt "Verb. Mark user (account) like spammer account"
+msgid ""
+"Ban user. He will not be able to log in on site and get an error that his "
+"account marked as spammer."
+msgstr ""
+"Заблокировать пользователя. Он не сможет авторизовываться на сайте и "
+"увидит ошибку о том, что его аккаунт заблокирован, как спам-аккаунт."
+
+#: ../plugin.php:79
+msgctxt "Verb. Mark user (account) like non spammer account"
+msgid "Unban"
+msgstr "Разблокировать"
+
+#: ../plugin.php:81
+msgctxt "Verb. Mark user (account) like spammer account"
+msgid "Ban"
+msgstr "Заблокировать"
+
+#: ../plugin.php:111
+msgid "You do not have the permission to do that!"
+msgstr "﻿У вас недостаточно прав для этого действия."
+
+#: ../plugin.php:175
+#, php-format
+msgctxt "%1$s - the account (user) ID (number)"
+msgid "An error occured during blocking account with ID <code>%1$s</code>."
+msgstr ""
+"Произошла ошибка во время блокировки аккаунта с ID <code>%1$s</code>."
+
+#: ../plugin.php:181
+#, php-format
+msgctxt "%1$s - the account (user) ID (number)"
+msgid ""
+"Account with ID <code>%1$s</code> have been successfully banned and no "
+"longer log in."
+msgstr ""
+"Аккаунт с ID <code>%1$s</code> успешно заблокирован и теперь не сможет "
+"авторизоваться на сайте."
+
+#: ../plugin.php:190
+#, php-format
+msgctxt "%1$s - the account (user) ID (number)"
+msgid "An error occured during unblocing account with ID <code>%1$s</code>."
+msgstr ""
+"Произошла ошибка во время разблокирования аккаунта с ID <code>%1$s</code>."
+
+#: ../plugin.php:196
+#, php-format
+msgctxt "%1$s - the account (user) ID (number)"
+msgid ""
+"Account with ID <code>%1$s</code> have been successfully unbanned and now "
+"can log in."
+msgstr ""
+"Аккаунт с ID <code>%1$s</code> успешно разблокирован и теперь может "
+"авторизоваться на сайте."
+
+#: ../plugin.php:203
+msgid "An error occured during something in Mark User as Spammer plugin."
+msgstr ""
+"Произошла неизвестная ошибка внутри плагина Mark User as Spammer в "
+"момент, когда он пытался что-то сделать."
