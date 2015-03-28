@@ -10,7 +10,6 @@
  * Domain Path: /languages/
  */
 class Mark_User_As_Spammer {
-	// TODO: переписать функции - static
 
 	public static $selectors = array();
 
