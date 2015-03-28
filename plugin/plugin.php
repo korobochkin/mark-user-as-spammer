@@ -226,6 +226,20 @@ class Mark_User_As_Spammer {
 			<?php
 		}
 	}
+
+	public static function on_uninstall() {
+		if( __FILE__ != WP_UNINSTALL_PLUGIN || ! current_user_can( 'activate_plugins') ){
+			return;
+		}
+
+		check_admin_referer( 'bulk-plugins' );
+
+		// Delete
+		global $wpdb;
+		$wpdb->delete( $wpdb->usermeta, array( 'meta_key' => 'mark_user_as_spammer' ), array ( '%s' ) );
+	}
 }
 Mark_User_As_Spammer::run();
+
+register_uninstall_hook( __FILE__, array( 'Mark_User_As_Spammer', 'on_uninstall') );
 ?>
