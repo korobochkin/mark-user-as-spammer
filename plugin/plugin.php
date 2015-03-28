@@ -10,6 +10,8 @@
  * Domain Path: /languages/
  */
 class Mark_User_As_Spammer {
+	// TODO: переписать функции - static
+	// TODO: улучшенная фильтрация данных перед выводом
 
 	public $selectors = array();
 
@@ -52,7 +54,7 @@ class Mark_User_As_Spammer {
 
 		$url = add_query_arg(
 			array(
-				'action' => $is_spammer ? 'mark_user_as_non_spammer' : 'mark_user_as_spammer',
+				'action' => $is_spammer ? 'mark_user_as_spammer_unban' : 'mark_user_as_spammer_ban',
 				'user_id' => $user_object->ID
 			),
 			'users.php'
@@ -60,7 +62,7 @@ class Mark_User_As_Spammer {
 
 		$url = wp_nonce_url(
 			$url,
-			($is_spammer ? 'mark_user_as_non_spammer_' : 'mark_user_as_spammer_') . $user_object->ID
+			($is_spammer ? 'mark_user_as_spammer_unban_' : 'mark_user_as_spammer_ban_') . $user_object->ID
 		);
 
 		$actions['spammer'] = '<a href="'
@@ -91,9 +93,18 @@ class Mark_User_As_Spammer {
 		add_action( 'admin_footer', array( $this, 'admin_footer' ) );
 
 		// Относится ли запрос к нашему плагину?
-		if ( !empty( $_GET['action'] ) && in_array( $_GET['action'], array ('mark_user_as_spammer', 'mark_user_as_non_spammer')) ) {
-			// Необходим ID пользователя
-			if( !empty( $_GET['user_id'] ) ) {
+		if (
+			! empty( $_GET['action'] )
+			&&
+			in_array( $_GET['action'], array ('mark_user_as_spammer_unban', 'mark_user_as_spammer_ban'))
+			&&
+			!empty( $_GET['user_id'] )
+		) {
+			$user_id = absint( $_GET['user_id'] );
+
+			if( $user_id > 0) {
+				// No sanitize because we use in_array above
+				$action = $_GET['action'];
 
 				// Only users with promote_users cap can do this (by default admin and super admin)
 				if( !current_user_can( 'promote_users' ) ) {
@@ -101,29 +112,28 @@ class Mark_User_As_Spammer {
 				}
 
 				// Check nonce (WordPress dies if nonce not valid and return 403)
-				check_admin_referer( $_GET['action'] . '_' .  $_GET['user_id'] );
+				check_admin_referer( $action . '_' .  $user_id );
 
 				// Получаем метаданные
-				$_GET['user_id'] = (int) $_GET['user_id'];
-				$user_meta = get_user_meta( $_GET['user_id'], 'mark_user_as_spammer', true );
+				$user_meta = get_user_meta( $user_id, 'mark_user_as_spammer', true );
 				// Если метаданные с именем mark_user_as_spammer уже есть у пользователя,
 				// меняем содержимое на противоположное
 				//if ( !empty( $user_meta ) ) {
 				if ( isset( $meta['spammer'] ) ) {
-					$user_meta['spammer'] = !(bool)$user_meta['spammer'];
+					$user_meta['spammer'] = ! (bool) $user_meta['spammer'];
 				}
 				// Если данных нет, создаем данные по умолчанию и смотрим какой "флажок" нужно поставить
 				else {
 					$user_meta['spammer'] = false;
 				}
 
-				switch ($_GET['action']) {
-					case 'mark_user_as_spammer':
+				switch ($action) {
+					case 'mark_user_as_spammer_ban':
 						$user_meta['spammer'] = true;
 						$message = 'spammed';
 						break;
 
-					case 'mark_user_as_non_spammer':
+					case 'mark_user_as_spammer_unban':
 						$user_meta['spammer'] = false;
 						$message = 'unspammed';
 						break;
@@ -131,14 +141,14 @@ class Mark_User_As_Spammer {
 
 				// Обновляем метаданные в БД
 				$update = update_user_meta(
-					$_GET['user_id'],
+					$user_id,
 					'mark_user_as_spammer',
 					$user_meta
 				);
 
-				$message = array( 'mark_user_as_spammer' => $message);
+				$message = array( 'mark_user_as_spammer' => $message );
 				if( !$update ) {
-					$message['failed'] = '1';
+					$message['failed'] = 1;
 				}
 
 				// Удаляем ненужные аргументы из адреса и делаем редирект на ту же страницу, но с другими параметрами
@@ -165,47 +175,53 @@ class Mark_User_As_Spammer {
 			&&
 			!empty( $_GET['user_id'] )
 		) {
-			$is_failure = !empty( $_GET['failed'] ) ? true : false; // Was that a failure?
+			$user_id = absint( $_GET['user_id'] );
 
-			$_GET['user_id'] = (int) $_GET['user_id'];
+			if( $user_id > 0 ) {
+				$is_failure = !empty( $_GET['failed'] ) ? true : false; // Was that a failure?
+				$action = sanitize_text_field( $_GET['mark_user_as_spammer'] ); // Armor
 
-			switch( $_GET['mark_user_as_spammer'] ) {
-				case 'spammed':
-					if( $is_failure ) {
-						$message = sprintf(
-							_x( 'An error occured during blocking account with ID <code>%1$s</code>.', '%1$s - the account (user) ID (number)', 'mark_user_as_spammer' ),
-							$_GET['user_id']
-						);
-					}
-					else {
-						$message = sprintf(
-							_x( 'Account with ID <code>%1$s</code> have been banned and no longer log in.', '%1$s - the account (user) ID (number)', 'mark_user_as_spammer' ),
-							$_GET['user_id']
-						);
-					}
-					break;
+				switch( $action ) {
+					case 'spammed':
+						if( $is_failure ) {
+							$message = sprintf(
+								_x( 'An error occured during blocking account with ID <code>%1$s</code>.', '%1$s - the account (user) ID (number)', 'mark_user_as_spammer' ),
+								$user_id
+							);
+						}
+						else {
+							$message = sprintf(
+								_x( 'Account with ID <code>%1$s</code> have been successfully banned and no longer log in.', '%1$s - the account (user) ID (number)', 'mark_user_as_spammer' ),
+								$user_id
+							);
+						}
+						break;
 
-				case 'unspammed':
-					if( $is_failure ) {
-						$message = sprintf(
-							_x( 'An error occured during unblocing account with ID <code>%1$s</code>.', '%1$s - the account (user) ID (number)', 'mark_user_as_spammer' ),
-							$_GET['user_id']
-						);
-					}
-					else {
-						$message = sprintf(
-							_x( 'Account with ID <code>%1$s</code> have been successfully unbanned and now can log in.', '%1$s - the account (user) ID (number)', 'mark_user_as_spammer' ),
-							$_GET['user_id']
-						);
-					}
-					break;
+					case 'unspammed':
+						if( $is_failure ) {
+							$message = sprintf(
+								_x( 'An error occured during unblocing account with ID <code>%1$s</code>.', '%1$s - the account (user) ID (number)', 'mark_user_as_spammer' ),
+								$user_id
+							);
+						}
+						else {
+							$message = sprintf(
+								_x( 'Account with ID <code>%1$s</code> have been successfully unbanned and now can log in.', '%1$s - the account (user) ID (number)', 'mark_user_as_spammer' ),
+								$user_id
+							);
+						}
+						break;
+
+					default:
+						$message = __( 'An error occured during something in Mark User as Spammer plugin.', 'mark_user_as_spammer' );
+						break;
+				}
+				?>
+				<div class="<?php echo $is_failure == true ? 'error' : 'updated'; ?> fade">
+					<p><?php echo $message; ?></p>
+				</div>
+				<?php
 			}
-
-			?>
-			<div id="message" class="<?php echo $is_failure === true ? 'error' : 'updated'; ?> fade">
-				<p><?php echo $message; ?></p>
-			</div>
-			<?php
 		}
 	}
 
