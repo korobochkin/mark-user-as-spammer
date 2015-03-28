@@ -62,7 +62,8 @@ class Mark_User_As_Spammer {
 
 		$url = wp_nonce_url(
 			$url,
-			( $is_spammer ? 'mark_user_as_spammer_unban_' : 'mark_user_as_spammer_ban_' ) . $user_object->ID
+			( $is_spammer ? 'mark_user_as_spammer_unban_' : 'mark_user_as_spammer_ban_' ) . $user_object->ID,
+			'mark_user_as_spammer_nonce'
 		);
 
 		$actions['spammer'] = '<a href="'
