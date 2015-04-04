@@ -126,6 +126,7 @@ class Mark_User_As_Spammer {
 						break;
 
 					case 'unban':
+					default:
 						$user_meta = '0';
 						$message = 'unspammed';
 						break;
