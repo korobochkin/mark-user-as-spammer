@@ -15,6 +15,9 @@ class Mark_User_As_Spammer {
 
 	private function __construct() {}
 
+	/*
+	 * Run this stuff at the end of the file
+	 */
 	public static function run() {
 		add_action( 'plugins_loaded', array( __CLASS__, 'plugins_loaded' ) );
 		add_filter( 'authenticate', array( __CLASS__, 'authenticate' ), 99 );
@@ -25,13 +28,16 @@ class Mark_User_As_Spammer {
 		}
 	}
 
+	/*
+	 * Load textdomain
+	 */
 	public static function plugins_loaded() {
 		load_plugin_textdomain( 'mark_user_as_spammer', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 
 	/*
-	 * В случае если у пользователя есть meta, которая говорит о том, что он спаммер мы не даем авторизацию
-	 * Таким же способом работает Multisite, если пользователь помечен как спамер.
+	 * If user have meta mark_user_as_spammer (meta_key) and this meta equal === '1' (meta_value)
+	 * we don't allow to auth on site. It's the same method like Multisite uses.
 	 */
 	public static function authenticate( $user ) {
 		if ( $user instanceof WP_User ) {
