@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Mark User as Spammer
  * Plugin URI: http://korobochkin.com/
- * Description: This plugin provides the ability to mark specific users as spammers like on Multisite install.
+ * Description: The ability to mark specific users as spammers like on Multisite install.
  * Author: Kolya Korobochkin
  * Author URI: http://korobochkin.com/
  * Version: 1.0.0
