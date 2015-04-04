@@ -1,6 +1,6 @@
 === Mark User as Spammer ===
 Contributors: korobochkin
-Donate link: http://example.com/
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=me%40korobochkin%2ecom&lc=EN&item_name=For%20plugin%20Mark%20user%20as%20spammer&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
 Tags: spammers, ban, block users
 Requires at least: 4.0.1
 Tested up to: 4.0.1
