@@ -52,7 +52,8 @@ class Mark_User_As_Spammer {
 	}
 
 	/*
-	 * Добавляем ссылку-кнопку, чтобы помечать пользователя как спамера.
+	 * Add link (<a href...) to user actions (on /wp-admin/users.php)
+	 * which can contain Ban or Unban actions (with nonces for protect site).
 	 */
 	public static function user_row_actions( $actions, $user_object ) {
 		$meta = get_user_meta( $user_object->ID, 'mark_user_as_spammer', true);
@@ -96,14 +97,16 @@ class Mark_User_As_Spammer {
 	}
 
 	/*
-	 * При загрузке страницы пользователей смотрим, относится ли запрос к нашему плагину.
-	 * Если да, то блокируем (разблокируем) пользователя.
+	 * During load users page add admin_footer action for output styles for banned users (they marked with red background).
+	 * Check if current request contain an information related to this plugin.
+	 * If yes we trying to ban or unban user.
+	 * If request with update_user_meta return an error our plugin output the red (error) notice on page.
 	 */
 	public static function load_users_page() {
 		// Стили для заблокированных пользователей
 		add_action( 'admin_footer', array( __CLASS__, 'admin_footer' ) );
 
-		// Относится ли запрос к нашему плагину?
+		// Current request related to this plugin?
 		if (
 			! empty( $_GET['mark_user_as_spammer_action'] )
 			&&
@@ -138,7 +141,7 @@ class Mark_User_As_Spammer {
 						break;
 				}
 
-				// Обновляем метаданные в БД
+				// Update user meta in DB
 				$update = update_user_meta(
 					$user_id,
 					'mark_user_as_spammer',
@@ -150,7 +153,7 @@ class Mark_User_As_Spammer {
 					$message['failed'] = '1';
 				}
 
-				// Удаляем ненужные аргументы из адреса и делаем редирект на ту же страницу, но с другими параметрами
+				// Delete args from URL and do redirect to current page with args with results of operation
 				wp_safe_redirect(
 					add_query_arg(
 						$message, remove_query_arg( array ( 'mark_user_as_spammer_action', 'mark_user_as_spammer_nonce' ) )
@@ -162,8 +165,8 @@ class Mark_User_As_Spammer {
 	}
 
 	/*
-	 * Выводим сообщение об успешном блокировании (разблокировании) пользователя
-	 * или ошибке, если она получилась в результате обновления update_user_meta
+	 * Shows up the message block which inform about success or failure on block (unblock) user
+	 * Show up the error if update_user_meta return an error (checkout load_users_page() function above)
 	 */
 	public static function admin_notices() {
 		// Logic grabbed from bbpress/includes/admin/topics.php
@@ -225,7 +228,7 @@ class Mark_User_As_Spammer {
 	}
 
 	/*
-	 * Выделяем заблокированных пользователей красным фоном (как на Мультисайте)
+	 * Highlight blocked (banned) users with red background (like Multisite)
 	 */
 	public static function admin_footer() {
 		if( !empty( self::$selectors ) ) {
