@@ -17,6 +17,8 @@ class Mark_User_As_Spammer {
 
 	/*
 	 * Run this stuff at the end of the file
+	 *
+	 * @since 1.0.0
 	 */
 	public static function run() {
 		add_action( 'plugins_loaded', array( __CLASS__, 'plugins_loaded' ) );
@@ -30,6 +32,8 @@ class Mark_User_As_Spammer {
 
 	/*
 	 * Load textdomain
+	 *
+	 * @since 1.0.0
 	 */
 	public static function plugins_loaded() {
 		load_plugin_textdomain( 'mark_user_as_spammer', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
@@ -54,6 +58,8 @@ class Mark_User_As_Spammer {
 	/*
 	 * Add link (<a href...) to user actions (on /wp-admin/users.php)
 	 * which can contain Ban or Unban actions (with nonces for protect site).
+	 *
+	 * @since 1.0.0
 	 */
 	public static function user_row_actions( $actions, $user_object ) {
 		$meta = get_user_meta( $user_object->ID, 'mark_user_as_spammer', true);
@@ -101,6 +107,8 @@ class Mark_User_As_Spammer {
 	 * Check if current request contain an information related to this plugin.
 	 * If yes we trying to ban or unban user.
 	 * If request with update_user_meta return an error our plugin output the red (error) notice on page.
+	 *
+	 * @since 1.0.0
 	 */
 	public static function load_users_page() {
 		// Стили для заблокированных пользователей
@@ -167,6 +175,8 @@ class Mark_User_As_Spammer {
 	/*
 	 * Shows up the message block which inform about success or failure on block (unblock) user
 	 * Show up the error if update_user_meta return an error (checkout load_users_page() function above)
+	 *
+	 * @since 1.0.0
 	 */
 	public static function admin_notices() {
 		// Logic grabbed from bbpress/includes/admin/topics.php
@@ -229,6 +239,8 @@ class Mark_User_As_Spammer {
 
 	/*
 	 * Highlight blocked (banned) users with red background (like Multisite)
+	 *
+	 * @since 1.0.0
 	 */
 	public static function admin_footer() {
 		if( !empty( self::$selectors ) ) {
@@ -242,6 +254,11 @@ class Mark_User_As_Spammer {
 		}
 	}
 
+	/*
+	 * Uninstall action callback
+	 *
+	 * @since 1.0.0
+	 */
 	public static function on_uninstall() {
 		// The uninstall plugin must be this file
 		// The current user can activate plugins
