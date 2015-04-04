@@ -54,9 +54,9 @@ class Mark_User_As_Spammer {
 		$is_spammer = false;
 		if ( $meta === '1' ) {
 			$is_spammer = true;
-			unset ($meta);
 			self::$selectors[] = $user_object->ID;
 		}
+		unset( $meta );
 
 		$url = add_query_arg(
 			array(
