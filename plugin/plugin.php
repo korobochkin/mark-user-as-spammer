@@ -42,6 +42,10 @@ class Mark_User_As_Spammer {
 	/*
 	 * If user have meta mark_user_as_spammer (meta_key) and this meta equal === '1' (meta_value)
 	 * we don't allow to auth on site. It's the same method like Multisite uses.
+	 *
+	 * @since 1.0.0
+	 * @param object $user WordPress user object
+	 * @return object WordPress user object or WP_Error object with error description.
 	 */
 	public static function authenticate( $user ) {
 		if ( $user instanceof WP_User ) {
@@ -60,6 +64,8 @@ class Mark_User_As_Spammer {
 	 * which can contain Ban or Unban actions (with nonces for protect site).
 	 *
 	 * @since 1.0.0
+	 * @param array $actions Array of actions (links) for each user.
+	 * @param object $user_object WordPress user object
 	 */
 	public static function user_row_actions( $actions, $user_object ) {
 		$meta = get_user_meta( $user_object->ID, 'mark_user_as_spammer', true);
