@@ -103,7 +103,7 @@ class Mark_User_As_Spammer {
 			&&
 			in_array( $_GET['mark_user_as_spammer_action'], array ('unban', 'ban'))
 			&&
-			!empty( $_GET['user_id'] )
+			! empty( $_GET['user_id'] )
 		) {
 			$user_id = absint( $_GET['user_id'] );
 
