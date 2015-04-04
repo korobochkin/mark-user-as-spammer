@@ -178,13 +178,13 @@ class Mark_User_As_Spammer {
 					case 'spammed':
 						if( $is_failure ) {
 							$message = sprintf(
-								_x( 'An error occured during blocking account with ID <code>%1$s</code>.', '%1$s - the account (user) ID (number)', 'mark_user_as_spammer' ),
+								_x( 'An error occured during blocking account with ID <code>%1$d</code>.', '%1$s - the account (user) ID (number)', 'mark_user_as_spammer' ),
 								$user_id
 							);
 						}
 						else {
 							$message = sprintf(
-								_x( 'Account with ID <code>%1$s</code> have been successfully banned and no longer log in.', '%1$s - the account (user) ID (number)', 'mark_user_as_spammer' ),
+								_x( 'Account with ID <code>%1$d</code> have been successfully banned and no longer log in.', '%1$s - the account (user) ID (number)', 'mark_user_as_spammer' ),
 								$user_id
 							);
 						}
@@ -193,13 +193,13 @@ class Mark_User_As_Spammer {
 					case 'unspammed':
 						if( $is_failure ) {
 							$message = sprintf(
-								_x( 'An error occured during unblocing account with ID <code>%1$s</code>.', '%1$s - the account (user) ID (number)', 'mark_user_as_spammer' ),
+								_x( 'An error occured during unblocing account with ID <code>%1$d</code>.', '%1$s - the account (user) ID (number)', 'mark_user_as_spammer' ),
 								$user_id
 							);
 						}
 						else {
 							$message = sprintf(
-								_x( 'Account with ID <code>%1$s</code> have been successfully unbanned and now can log in.', '%1$s - the account (user) ID (number)', 'mark_user_as_spammer' ),
+								_x( 'Account with ID <code>%1$d</code> have been successfully unbanned and now can log in.', '%1$s - the account (user) ID (number)', 'mark_user_as_spammer' ),
 								$user_id
 							);
 						}
