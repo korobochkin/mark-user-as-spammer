@@ -11,12 +11,22 @@
  */
 class Mark_User_As_Spammer {
 
+	/*
+	 * @var array $selectors Indexed or empty array with users IDs.
+	 * @see Mark_User_As_Spammer::user_row_actions()
+	 * @see Mark_User_As_Spammer::admin_footer()
+	 */
 	public static $selectors = array();
 
+	/*
+	 * Do nothing.
+	 *
+	 * @since 1.0.0
+	 */
 	private function __construct() {}
 
 	/*
-	 * Run this stuff at the end of the file
+	 * Run this stuff at the end of the file.
 	 *
 	 * @since 1.0.0
 	 */
@@ -31,7 +41,7 @@ class Mark_User_As_Spammer {
 	}
 
 	/*
-	 * Load textdomain
+	 * Load textdomain.
 	 *
 	 * @since 1.0.0
 	 */
@@ -180,7 +190,7 @@ class Mark_User_As_Spammer {
 
 	/*
 	 * Shows up the message block which inform about success or failure on block (unblock) user
-	 * Show up the error if update_user_meta return an error (checkout load_users_page() function above)
+	 * Show up the error if update_user_meta return an error (checkout load_users_page() function above).
 	 *
 	 * @since 1.0.0
 	 */
@@ -244,7 +254,7 @@ class Mark_User_As_Spammer {
 	}
 
 	/*
-	 * Highlight blocked (banned) users with red background (like Multisite)
+	 * Highlight blocked (banned) users with red background (like Multisite).
 	 *
 	 * @since 1.0.0
 	 */
@@ -261,7 +271,7 @@ class Mark_User_As_Spammer {
 	}
 
 	/*
-	 * Uninstall action callback
+	 * Uninstall action callback.
 	 *
 	 * @since 1.0.0
 	 */
