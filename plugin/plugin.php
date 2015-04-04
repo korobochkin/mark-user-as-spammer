@@ -26,7 +26,6 @@ class Mark_User_As_Spammer {
 	}
 
 	public static function plugins_loaded() {
-		$path = dirname( plugin_basename( __FILE__ ) );
 		load_plugin_textdomain( 'mark_user_as_spammer', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 
