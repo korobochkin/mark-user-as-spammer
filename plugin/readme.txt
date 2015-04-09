@@ -16,10 +16,19 @@ The ability to mark specific users as spammers like on Multisite install. If you
 
 == Installation ==
 
-Install this plugin like many others WordPress plugins. Simply download archive and upload to /wp-content/plugins directory.
+= From your WordPress dashboard =
 
-1. Upload `plugin-name.php` to the `/wp-content/plugins/` directory.
-2. Activate the plugin through the 'Plugins' menu in WordPress.
+1. Visit 'Plugins > Add New'
+2. Search for 'mark user as spammer'
+3. Activate Mark User as Spammer from your Plugins page.
+4. Ban or unban users on yourdomain.com/wp-admin/users.php page.
+
+= From WordPress.org =
+
+1. Download Mark User as Spammer.
+2. Upload the 'mark-user-as-spammer' directory to your '/wp-content/plugins/' directory, using your favorite method (ftp, sftp, scp, etc...).
+3. Activate Mark User as Spammer from your Plugins page.
+4. Ban or unban users on yourdomain.com/wp-admin/users.php page.
 
 == Frequently Asked Questions ==
 
