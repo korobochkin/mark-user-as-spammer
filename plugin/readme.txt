@@ -12,7 +12,15 @@ The ability to mark specific users as spammers like on Multisite install.
 
 == Description ==
 
-The ability to mark specific users as spammers like on Multisite install. If you mark user as spammer he can't log in into WordPress and got an error shows up that account have been marked as spammer account.
+The ability to mark specific users as spammers like on Multisite install. If you mark user as spammer he can't log in into WordPress and got an error shows up that account have been marked as spammer account. This behavior grabbed from WordPress Multisite install.
+
+Helpfull if you want disable login for some user but don't want to delete account. Deleting account is not good idea because you can delete good account. Or delete spammer account but it can be mistake. After deleting you can't restore account but with this plugin you can ban or unban accounts anytime.
+
+You can ban or unban users on /wp-admin/users.php page by clicking links bellow username. Be careful, you can ban yourself, administrators or other highlevel users.
+
+You can also switch account status by manually editing `mark_user_as_spammer` user meta in `wp_usermeta` table. `1` -- spammer. `0` -- not spammer.
+
+[Plugin on Github](https://github.com/korobochkin/mark-user-as-spammer)
 
 == Installation ==
 
