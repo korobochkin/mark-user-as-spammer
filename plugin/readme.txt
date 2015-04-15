@@ -22,6 +22,8 @@ You can also switch account status by manually editing `mark_user_as_spammer` us
 
 [Plugin on Github](https://github.com/korobochkin/mark-user-as-spammer)
 
+Photo on banner created by [Bastian Sara](https://stocksnap.io/photo/LVKUG7VU8F).
+
 == Installation ==
 
 = From your WordPress dashboard =
