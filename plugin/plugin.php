@@ -68,7 +68,7 @@ class Mark_User_As_Spammer {
 				return new WP_Error( 'spammer_account', __( '<strong>ERROR</strong>: Your account has been marked as a spammer.' ) );
 			}
 		}
-		// Возвращаем $user если объект на самом деле не экзепляр класса WP_User
+		// Return $user if object is not an instantiated object of a WP_User class
 		return $user;
 	}
 
@@ -130,7 +130,7 @@ class Mark_User_As_Spammer {
 	 * @since 1.0.0
 	 */
 	public static function load_users_page() {
-		// Стили для заблокированных пользователей
+		// Styles for banned accounts (red background)
 		add_action( 'admin_footer', array( __CLASS__, 'admin_footer' ) );
 
 		// Current request related to this plugin?
