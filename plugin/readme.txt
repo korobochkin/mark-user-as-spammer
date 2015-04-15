@@ -50,5 +50,11 @@ The plugin add only single user meta option to each user with meta_key equal 'ma
 
 == Changelog ==
 
+= 1.0.1 =
+* Translated all comments in code to english.
+* Added plugin icon, banner and screenshots.
+* Fixed WordPress required and tested up versions.
+* Improved readme file.
+
 = 1.0.0 =
 * First version of plugin.
