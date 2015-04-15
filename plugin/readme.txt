@@ -60,3 +60,8 @@ The plugin add only single user meta option to each user with meta_key equal 'ma
 
 = 1.0.0 =
 * First version of plugin.
+
+== Upgrade Notice ==
+
+= 1.0.1 =
+Fixed WordPress required and tested up versions.
