@@ -38,6 +38,10 @@ You can also switch account status by manually editing `mark_user_as_spammer` us
 3. Activate Mark User as Spammer from your Plugins page.
 4. Ban or unban users on yourdomain.com/wp-admin/users.php page.
 
+== Screenshots ==
+1. Ban or unban users on Users page. Blocked users marked with red background.
+2. If you ban someone he can't log in anymore and WordPress shows up the error notice during login process.
+
 == Frequently Asked Questions ==
 
 = Which information plugin stores in DB? =
