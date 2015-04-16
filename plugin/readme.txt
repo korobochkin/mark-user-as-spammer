@@ -18,7 +18,7 @@ Helpfull if you want disable login for some user but don't want to delete accoun
 
 You can ban or unban users on /wp-admin/users.php page by clicking links bellow username. Be careful, you can ban yourself, administrators or other highlevel users.
 
-You can also switch account status by manually editing `mark_user_as_spammer` user meta in `wp_usermeta` table. `1` -- spammer. `0` -- not spammer.
+You can also switch account status by manually editing `mark_user_as_spammer` user meta in `wp_usermeta` table. `1` — spammer. `0` — not spammer.
 
 [Plugin on Github](https://github.com/korobochkin/mark-user-as-spammer)
 
@@ -41,6 +41,7 @@ Photo on banner created by [Bastian Sara](https://stocksnap.io/photo/LVKUG7VU8F)
 4. Ban or unban users on yourdomain.com/wp-admin/users.php page.
 
 == Screenshots ==
+
 1. Ban or unban users on Users page. Blocked users marked with red background.
 2. If you ban someone he can't log in anymore and WordPress shows up the error notice during login process.
 
