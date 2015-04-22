@@ -248,7 +248,7 @@ class Mark_User_As_Spammer {
 						break;
 				}
 				?>
-				<div class="<?php echo $is_failure == true ? 'error' : 'updated'; ?> fade">
+				<div class="<?php echo $is_failure == true ? 'error' : 'updated'; ?> fade notice is-dismissible">
 					<p><?php echo $message; ?></p>
 				</div>
 				<?php
