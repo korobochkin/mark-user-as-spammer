@@ -9,7 +9,7 @@
  * Text Domain: mark_user_as_spammer
  * Domain Path: /languages/
  * Requires at least: 4.1.1
- * Tested up to: 4.1.1
+ * Tested up to: 4.2
  * License: GPLv2 or later
  */
 class Mark_User_As_Spammer {
