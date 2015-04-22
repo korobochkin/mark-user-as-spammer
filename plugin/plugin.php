@@ -103,8 +103,16 @@ class Mark_User_As_Spammer {
 			'mark_user_as_spammer_nonce'
 		);
 
+		$url = site_url( $url );
+
+		/*
+		 * Always use esc_url() before output link!
+		 * wp_nonce_url() already pass url to esc_html and script tags will be encoded but we need armor to protect URL from XSS
+		 */
+		$url = esc_url( $url );
+
 		$actions['spammer'] = '<a href="'
-			. site_url( $url )
+			. $url
 			. '" class="mark-user-as-spammer" title="' . (
 				$is_spammer ?
 					esc_attr_x ('Unban user. He will be able to log in on site.', 'Verb. Mark user (account) like non spammer account', 'mark_user_as_spammer')
