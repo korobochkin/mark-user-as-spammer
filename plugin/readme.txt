@@ -53,6 +53,9 @@ The plugin add only single user meta option to each user with meta_key equal 'ma
 
 == Changelog ==
 
+= 1.0.2 =
+* Prepare URL before output it. This plugin doesn't have XSS vulnerability like many others plugins (because we use `wp_nonce_url()` before output the links) but page may look incorrect if you try to open something like `site.com/users.php?"><script>alert('hi')</script>`. Script not working (thanks `wp_nonce_url()`) but markup looks crashed.
+
 = 1.0.1 =
 * Translated all comments in code to english.
 * Added plugin icon, banner and screenshots.
@@ -63,6 +66,9 @@ The plugin add only single user meta option to each user with meta_key equal 'ma
 * First version of plugin.
 
 == Upgrade Notice ==
+
+= 1.0.2 =
+Better output for links.
 
 = 1.0.1 =
 Fixed WordPress required and tested up versions.
