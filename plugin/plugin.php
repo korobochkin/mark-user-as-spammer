@@ -106,7 +106,7 @@ class Mark_User_As_Spammer {
 		$url = site_url( $url );
 
 		/*
-		 * Always use esc_url() before output link!
+		 * Always use esc_url() before output the links!
 		 * wp_nonce_url() already pass url to esc_html and script tags will be encoded but we need armor to protect URL from XSS
 		 */
 		$url = esc_url( $url );
