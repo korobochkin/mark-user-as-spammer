@@ -8,8 +8,8 @@
  * Version: 2.0.0
  * Text Domain: mark_user_as_spammer
  * Domain Path: /languages/
- * Requires at least: 4.1.1
- * Tested up to: 4.2.1
+ * Requires at least: 4.3.1
+ * Tested up to: 4.3.1
  * License: GPLv2 or later
  */
 class Mark_User_As_Spammer {
