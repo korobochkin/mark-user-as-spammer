@@ -1,19 +1,19 @@
 <?php
-/**
- * Plugin Name: Mark User as Spammer
- * Plugin URI: http://korobochkin.com/
- * Description: The ability to mark specific users as spammers like on Multisite install.
- * Author: Kolya Korobochkin
- * Author URI: http://korobochkin.com/
- * Version: 2.0.0
- * Text Domain: mark_user_as_spammer
- * Domain Path: /languages/
- * Requires at least: 4.3.1
- * Tested up to: 4.3.1
- * License: GPLv2 or later
- */
-class Mark_User_As_Spammer {
+/*
+Plugin Name: Mark User as Spammer
+Plugin URI: http://korobochkin.com/
+Description: The ability to mark specific users as spammers like on Multisite install.
+Author: Kolya Korobochkin
+Author URI: http://korobochkin.com/
+Version: 2.0.0
+Text Domain: mark_user_as_spammer
+Domain Path: /languages/
+Requires at least: 4.3.1
+Tested up to: 4.3.1
+License: GPLv2 or later
+*/
 
+class Mark_User_As_Spammer {
 	/*
 	 * @var array $selectors Indexed or empty array with users IDs.
 	 * @see Mark_User_As_Spammer::user_row_actions()
