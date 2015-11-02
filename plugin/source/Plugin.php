@@ -15,13 +15,14 @@ class Plugin {
 		add_action( 'plugins_loaded', array( 'Korobochkin\MarkUserAsSpammer\Translations', 'load_translations' ) );
 
 		/*
-		 * Prevent auth via logged in form (wp-login.php).
+		 * Prevent auth via logged in form (wp-login.php for example).
 		 */
 		add_filter( 'authenticate', array( 'Korobochkin\MarkUserAsSpammer\Authenticate\Authenticate', 'authenticate' ), 99 );
 
 		/*
 		 * Force log out already logged in users and destroy their auth sessions as soon as possible.
-		 * WARNING: Some plugins (or other code) can do something like user successfully logged in with this action but lower priority.
+		 * WARNING: Some plugins (or other code) can do something with this action and lower priority
+		 * if user currently logged in.
 		 */
 		add_action( 'set_current_user', array( 'Korobochkin\MarkUserAsSpammer\Authenticate\Authenticate', 'log_out_banned_users' ) );
 
