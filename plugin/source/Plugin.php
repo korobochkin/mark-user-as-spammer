@@ -7,7 +7,16 @@ class Plugin {
 
 	public static function run() {
 		add_action( 'plugins_loaded', array( 'Korobochkin\MarkUserAsSpammer\Translations', 'load_translations' ) );
+
+		/*
+		 * Prevent auth via logged in form (wp-login.php).
+		 */
 		add_filter( 'authenticate', array( 'Korobochkin\MarkUserAsSpammer\Authenticate\Authenticate', 'authenticate' ), 99 );
+
+		/*
+		 * Force log out already logged in users and destroy their sessions.
+		 */
+		add_action( 'init', array( 'Korobochkin\MarkUserAsSpammer\Authenticate\Authenticate', 'log_out_banned_users' ) );
 
 		if ( is_admin() ) {
 			add_filter( 'user_row_actions', array( 'Korobochkin\MarkUserAsSpammer\Admin\UserRowActions', 'render' ), 10, 2);

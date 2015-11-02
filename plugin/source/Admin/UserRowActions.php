@@ -4,7 +4,7 @@ namespace Korobochkin\MarkUserAsSpammer\Admin;
 class UserRowActions {
 	
 	public static function render( $actions, $user_object ) {
-		$meta = get_user_meta( $user_object->ID, 'mark_user_as_spammer', true);
+		$meta = get_user_meta( $user_object->ID, \Korobochkin\MarkUserAsSpammer\Users\User::BANNED_OPTION_NAME, true);
 
 		$is_spammer = false;
 		if ( $meta === '1' ) {
