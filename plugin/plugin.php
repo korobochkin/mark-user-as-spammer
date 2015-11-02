@@ -20,7 +20,8 @@ License: GPLv2 or later
  * @since 2.0.0
  */
 require_once 'vendor/autoload.php';
-Plugin::run();
+$GLOBALS['MarkUserAsSpammerPlugin'] = new Plugin( __FILE__ );
+$GLOBALS['MarkUserAsSpammerPlugin']->run();
 
 // Exit from the file
 return;

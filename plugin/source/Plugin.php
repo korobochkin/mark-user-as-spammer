@@ -5,7 +5,13 @@ class Plugin {
 
 	const NAME = 'mark_user_as_spammer';
 
-	public static function run() {
+	public $plugin_path = NULL;
+
+	public function __construct( $run_from_file ) {
+		$this->plugin_path = dirname( plugin_basename( $run_from_file ) );
+	}
+
+	public function run() {
 		add_action( 'plugins_loaded', array( 'Korobochkin\MarkUserAsSpammer\Translations', 'load_translations' ) );
 
 		/*
