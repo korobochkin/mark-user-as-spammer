@@ -27,7 +27,7 @@ class Plugin {
 		add_action( 'set_current_user', array( 'Korobochkin\MarkUserAsSpammer\Authenticate\Authenticate', 'log_out_banned_users' ) );
 
 		if ( is_admin() ) {
-			add_filter( 'user_row_actions', array( 'Korobochkin\MarkUserAsSpammer\Admin\UserRowActions', 'render' ), 10, 2);
+			add_filter( 'user_row_actions', array( 'Korobochkin\MarkUserAsSpammer\Admin\RowActions\User', 'add_actions' ), 10, 2);
 			add_action( 'load-users.php', array( 'Korobochkin\MarkUserAsSpammer\Admin\LoadUsersPage', 'render' ) );
 			add_action( 'admin_notices',  array( 'Korobochkin\MarkUserAsSpammer\Admin\AdminNotices', 'add_notices' ) );
 		}
