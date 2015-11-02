@@ -22,13 +22,6 @@ class Mark_User_As_Spammer {
 	public static $selectors = array();
 
 	/*
-	 * Do nothing.
-	 *
-	 * @since 1.0.0
-	 */
-	private function __construct() {}
-
-	/*
 	 * Run this stuff at the end of the file.
 	 *
 	 * @since 1.0.0
