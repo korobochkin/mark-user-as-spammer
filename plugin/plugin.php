@@ -311,5 +311,5 @@ class Mark_User_As_Spammer {
 }
 Mark_User_As_Spammer::run();
 
-register_uninstall_hook( __FILE__, array( 'Mark_User_As_Spammer', 'on_uninstall') );
+register_uninstall_hook( __FILE__, array( 'Uninstaller', 'uninstall') );
 ?>
