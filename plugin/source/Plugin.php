@@ -30,6 +30,9 @@ class Plugin {
 			add_filter( 'user_row_actions', array( 'Korobochkin\MarkUserAsSpammer\Admin\RowActions\User', 'add_actions' ), 10, 2);
 			add_action( 'load-users.php', array( 'Korobochkin\MarkUserAsSpammer\Admin\LoadUsersPage', 'render' ) );
 			add_action( 'admin_notices',  array( 'Korobochkin\MarkUserAsSpammer\Admin\AdminNotices', 'add_notices' ) );
+
+			// TODO: добавить балк экшены (в текущей версии WP нет такой возможности)
+			// https://codex.wordpress.org/Plugin_API/Filter_Reference/bulk_actions
 		}
 	}
 }
