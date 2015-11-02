@@ -25,8 +25,6 @@ $GLOBALS['MarkUserAsSpammerPlugin']->run();
 
 // Exit from the file
 return;
-// TODO: уничтожать сессии
-// http://wordpress.stackexchange.com/questions/123902/ban-a-user-and-end-their-session
 
 
 class Mark_User_As_Spammer {
