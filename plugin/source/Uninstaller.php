@@ -2,6 +2,7 @@
 namespace Korobochkin\MarkUserAsSpammer;
 
 class Uninstaller {
+	// TODO: Проверить удалялку
 
 	/*
 	 * Uninstall action callback.
