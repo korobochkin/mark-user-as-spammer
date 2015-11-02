@@ -13,6 +13,8 @@ Tested up to: 4.3.1
 License: GPLv2 or later
 */
 
+
+
 class Mark_User_As_Spammer {
 	/*
 	 * @var array $selectors Indexed or empty array with users IDs.
