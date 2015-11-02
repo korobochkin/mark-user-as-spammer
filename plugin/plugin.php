@@ -1,4 +1,5 @@
 <?php
+namespace Korobochkin\MarkUserAsSpammer;
 /*
 Plugin Name: Mark User as Spammer
 Plugin URI: http://korobochkin.com/
@@ -13,6 +14,18 @@ Tested up to: 4.3.1
 License: GPLv2 or later
 */
 
+/**
+ * Autoloader for all classes.
+ *
+ * @since 2.0.0
+ */
+require_once 'vendor/autoload.php';
+Plugin::run();
+
+// Exit from the file
+return;
+// TODO: уничтожать сессии
+// http://wordpress.stackexchange.com/questions/123902/ban-a-user-and-end-their-session
 
 
 class Mark_User_As_Spammer {
