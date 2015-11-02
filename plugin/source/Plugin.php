@@ -20,7 +20,8 @@ class Plugin {
 		add_filter( 'authenticate', array( 'Korobochkin\MarkUserAsSpammer\Authenticate\Authenticate', 'authenticate' ), 99 );
 
 		/*
-		 * Force log out already logged in users and destroy their sessions.
+		 * Force log out already logged in users and destroy their auth sessions as soon as possible.
+		 * WARNING: Some plugins (or other code) can do something like user successfully logged in with this action but lower priority.
 		 */
 		add_action( 'set_current_user', array( 'Korobochkin\MarkUserAsSpammer\Authenticate\Authenticate', 'log_out_banned_users' ) );
 
