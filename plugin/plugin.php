@@ -5,7 +5,7 @@
  * Description: The ability to mark specific users as spammers like on Multisite install.
  * Author: Kolya Korobochkin
  * Author URI: http://korobochkin.com/
- * Version: 1.0.2
+ * Version: 2.0.0
  * Text Domain: mark_user_as_spammer
  * Domain Path: /languages/
  * Requires at least: 4.1.1
