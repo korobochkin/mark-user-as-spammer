@@ -6,9 +6,15 @@
     "authors": [
         {
             "name": "Kolya Korobochkin",
-            "email": "me@korobochkin.com"
+            "email": "me@korobochkin.com",
+            "homepage": "http://korobochkin.com"
         }
     ],
     "minimum-stability": "stable",
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Korobochkin\\MarkUserAsSpammer\\": "source/"
+        }
+    }
 }
