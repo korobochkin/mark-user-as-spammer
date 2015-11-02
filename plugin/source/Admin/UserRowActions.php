@@ -9,7 +9,7 @@ class UserRowActions {
 		$is_spammer = false;
 		if ( $meta === '1' ) {
 			$is_spammer = true;
-			self::$selectors[] = $user_object->ID;
+			LoadUsersPage::$selectors[] = $user_object->ID;
 		}
 		unset( $meta );
 

@@ -3,7 +3,7 @@ namespace Korobochkin\MarkUserAsSpammer\Admin;
 
 class LoadUsersPage {
 
-	private static $selectors;
+	public static $selectors;
 
 	public static function render() {
 		// Styles for banned accounts (red background)
