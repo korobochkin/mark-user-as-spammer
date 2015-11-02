@@ -22,7 +22,9 @@ class Plugin {
 		/*
 		 * Force log out already logged in users and destroy their sessions.
 		 */
-		add_action( 'init', array( 'Korobochkin\MarkUserAsSpammer\Authenticate\Authenticate', 'log_out_banned_users' ) );
+		// TODO: редиректит на главную даже если мы тока авторизуемся (init)
+		//add_action( 'init', array( 'Korobochkin\MarkUserAsSpammer\Authenticate\Authenticate', 'log_out_banned_users' ) );
+		//add_filter(  'authenticate', array( 'Korobochkin\MarkUserAsSpammer\Authenticate\Authenticate', 'wp_authenticate_user' ) );
 
 		if ( is_admin() ) {
 			add_filter( 'user_row_actions', array( 'Korobochkin\MarkUserAsSpammer\Admin\UserRowActions', 'render' ), 10, 2);

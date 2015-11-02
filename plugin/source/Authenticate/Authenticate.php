@@ -12,11 +12,14 @@ class Authenticate {
 	 * @return object WordPress user object or WP_Error object with error description.
 	 */
 	public static function authenticate( $user ) {
-		if ( $user instanceof WP_User ) {
+		if ( $user instanceof \WP_User ) {
 			$meta = get_user_meta( $user->ID, \Korobochkin\MarkUserAsSpammer\Users\User::BANNED_OPTION_NAME, true);
 			if ( $meta === '1' ) {
+				// Удаляем фильтр который нас переадресует
+				//$result_action = remove_action( 'set_current_user',  array( $GLOBALS['MarkUserAsSpammerPlugin'], 'log_out_banned_users' ) );
+
 				// Text copied from wp-includes/user.php (line 217)
-				return new WP_Error( 'spammer_account', __( '<strong>ERROR</strong>: Your account has been marked as a spammer.' ) );
+				return new \WP_Error( 'spammer_account', __( '<strong>ERROR</strong>: Your account has been marked as a spammer.' ) );
 			}
 		}
 		// Return $user if object is not an instantiated object of a WP_User class
@@ -40,5 +43,10 @@ class Authenticate {
 			wp_redirect( home_url( '/' ) );
 			exit;
 		}
+	}
+
+	public static function wp_authenticate_user( $user ) {
+		$kk = '';
+		return $user;
 	}
 }
