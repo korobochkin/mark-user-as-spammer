@@ -12,11 +12,9 @@ The ability to mark specific users as spammers like on Multisite install.
 
 == Description ==
 
-The ability to mark specific users as spammers like on Multisite install. If you mark user as spammer he can't log in into WordPress and got an error shows up that account have been marked as spammer account.
+The ability to mark specific users as spammers like on Multisite install. Right now after account have been banned user can't log in. Even if they currently have active sessions (and admin area currently open) they will be force log out without opportunity to log in again.
 
-Right now after account have been banned user can't log in. Even if they currently have active sessions (and admin area currenty open) they will be force log out without oportunity to log in again.
-
-Helpfull if you want disable any accounts but not want delete the account. Deleting account is not good idea because you can delete good account. After deleting you can't restore account but with this plugin you can ban or unban accounts anytime. You can ban or unban users on /wp-admin/users.php page by clicking links bellow username. Be careful, you can ban yourself, administrators or other highlevel users.
+If you found any errors in this text (or on other plugin description tabs) please contact me directly via me@korobochkin.com or [submit a bug report on Github](https://github.com/korobochkin/mark-user-as-spammer/issues).
 
 [Plugin on Github](https://github.com/korobochkin/mark-user-as-spammer). Photo on banner created by [Bastian Sara](https://stocksnap.io/photo/LVKUG7VU8F).
 
@@ -42,6 +40,10 @@ Helpfull if you want disable any accounts but not want delete the account. Delet
 2. If you ban someone he can't log in anymore and WordPress shows up the error notice during login process.
 
 == Frequently Asked Questions ==
+
+= Why deleting accounts is not good idea? =
+
+This plugin helpfull if you want disable any accounts but not want delete the account. Deleting account is not good idea because you can delete good account. After deleting you can't restore account but with this plugin you can ban or unban accounts anytime. You can ban or unban users on /wp-admin/users.php page by clicking links bellow username. Be careful, you can ban yourself, administrators or other highlevel users.
 
 = Which information plugin stores in DB? =
 
