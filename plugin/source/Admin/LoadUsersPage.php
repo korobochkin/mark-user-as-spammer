@@ -45,11 +45,7 @@ class LoadUsersPage {
 				}
 
 				// Update user meta in DB
-				$update = update_user_meta(
-					$user_id,
-					\Korobochkin\MarkUserAsSpammer\Users\User::BANNED_OPTION_NAME,
-					$user_meta
-				);
+				$update = \Korobochkin\MarkUserAsSpammer\Users\User::set_status( $user_id, $user_meta );
 
 				$message = array( 'mark_user_as_spammer' => $message );
 				if( !$update ) {

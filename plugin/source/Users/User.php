@@ -9,8 +9,8 @@ class User {
 		'spammer'        // 1. Account locked. Spammer.
 	);
 
-	public static function set_status( int $user_id, string $status ) {
-
+	public static function set_status( $user_id, $status ) {
+		$status = (string) $status;
 		switch( $status ) {
 			case '1':
 			case '0':
