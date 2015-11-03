@@ -19,13 +19,6 @@ class Plugin {
 		 */
 		add_filter( 'authenticate', array( 'Korobochkin\MarkUserAsSpammer\Authenticate\Authenticate', 'authenticate' ), 99 );
 
-		/*
-		 * Force log out already logged in users and destroy their auth sessions as soon as possible.
-		 * WARNING: Some plugins (or other code) can do something with this action and lower priority
-		 * if user currently logged in.
-		 */
-		add_action( 'set_current_user', array( 'Korobochkin\MarkUserAsSpammer\Authenticate\Authenticate', 'log_out_banned_users' ) );
-
 		if ( is_admin() ) {
 			add_filter( 'user_row_actions', array( 'Korobochkin\MarkUserAsSpammer\Admin\RowActions\User', 'add_actions' ), 10, 2);
 			add_action( 'load-users.php', array( 'Korobochkin\MarkUserAsSpammer\Admin\LoadUsersPage', 'catch_request' ) );

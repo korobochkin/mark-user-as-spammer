@@ -40,4 +40,14 @@ class User {
 		}
 		return '0';
 	}
+
+	/**
+	 * Delete currently active user auth sessions.
+	 *
+	 * @param $user_id User ID
+	 */
+	public static function delete_sessions( $user_id ) {
+		$manager = \WP_Session_Tokens::get_instance( $user_id );
+		$manager->destroy_all();
+	}
 }

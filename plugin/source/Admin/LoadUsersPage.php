@@ -33,21 +33,25 @@ class LoadUsersPage {
 
 				switch ($action) {
 					case 'ban':
-						$user_meta = '1';
-						$message = 'spammed';
+						$message['mark_user_as_spammer'] = 'spammed';
+
+						// Update user meta in DB
+						$update = \Korobochkin\MarkUserAsSpammer\Users\User::set_status( $user_id, '1' );
+
+						// Drop all user active sessions
+						\Korobochkin\MarkUserAsSpammer\Users\User::delete_sessions( $user_id );
 						break;
 
 					case 'unban':
 					default:
-						$user_meta = '0';
-						$message = 'unspammed';
+						$message['mark_user_as_spammer'] = 'unspammed';
+
+						// Update user meta in DB
+						$update = \Korobochkin\MarkUserAsSpammer\Users\User::set_status( $user_id, '0' );
+
 						break;
 				}
 
-				// Update user meta in DB
-				$update = \Korobochkin\MarkUserAsSpammer\Users\User::set_status( $user_id, $user_meta );
-
-				$message = array( 'mark_user_as_spammer' => $message );
 				if( !$update ) {
 					$message['failed'] = '1';
 				}

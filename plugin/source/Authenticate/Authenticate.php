@@ -15,10 +15,6 @@ class Authenticate {
 		if ( $user instanceof \WP_User ) {
 			$meta = get_user_meta( $user->ID, \Korobochkin\MarkUserAsSpammer\Users\User::BANNED_OPTION_NAME, true);
 			if ( $meta === '1' ) {
-
-				// Мы в процессе авторизации. Удаляем фильтр который нас переадресует (на странице авторизации и так должны выбрасываться ошибки авторизации).
-				remove_action( 'set_current_user',  array( 'Korobochkin\MarkUserAsSpammer\Authenticate\Authenticate', 'log_out_banned_users' ) );
-
 				// Text copied from wp-includes/user.php (line 217)
 				return new \WP_Error( 'spammer_account', __( '<strong>ERROR</strong>: Your account has been marked as a spammer.' ) );
 			}
