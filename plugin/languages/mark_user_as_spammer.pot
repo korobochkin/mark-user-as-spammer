@@ -1,0 +1,95 @@
+# Copyright (C) 2015 Mark User as Spammer
+# This file is distributed under the same license as the Mark User as Spammer package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Mark User as Spammer 2.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mark-user-as-"
+"spammer\n"
+"POT-Creation-Date: 2015-11-03 18:22:38+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: source/Admin/AdminNotices.php:31
+msgctxt "%1$s - the account (user) ID (number)"
+msgid "An error occured during blocking account with ID <code>%1$d</code>."
+msgstr ""
+
+#: source/Admin/AdminNotices.php:37
+msgctxt "%1$s - the account (user) ID (number)"
+msgid ""
+"Account with ID <code>%1$d</code> have been successfully banned and no "
+"longer log in."
+msgstr ""
+
+#: source/Admin/AdminNotices.php:46
+msgctxt "%1$s - the account (user) ID (number)"
+msgid "An error occured during unblocing account with ID <code>%1$d</code>."
+msgstr ""
+
+#: source/Admin/AdminNotices.php:52
+msgctxt "%1$s - the account (user) ID (number)"
+msgid ""
+"Account with ID <code>%1$d</code> have been successfully unbanned and now "
+"can log in."
+msgstr ""
+
+#: source/Admin/AdminNotices.php:59
+msgid "An error occured during something in Mark User as Spammer plugin."
+msgstr ""
+
+#: source/Admin/LoadUsersPage.php:28
+msgid "You do not have the permission to do that!"
+msgstr ""
+
+#: source/Admin/RowActions/User.php:48
+msgctxt "Verb. Mark user (account) like non spammer account"
+msgid "Unban user. He will be able to log in on site."
+msgstr ""
+
+#: source/Admin/RowActions/User.php:50
+msgctxt "Verb. Mark user (account) like spammer account"
+msgid ""
+"Ban user. He will not be able to log in on site and get an error that his "
+"account marked as spammer."
+msgstr ""
+
+#: source/Admin/RowActions/User.php:53
+msgctxt "Verb. Mark user (account) like non spammer account"
+msgid "Unban"
+msgstr ""
+
+#: source/Admin/RowActions/User.php:55
+msgctxt "Verb. Mark user (account) like spammer account"
+msgid "Ban"
+msgstr ""
+
+#: source/Authenticate/Authenticate.php:19
+msgid "<strong>ERROR</strong>: Your account has been marked as a spammer."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Mark User as Spammer"
+msgstr ""
+
+#. #-#-#-#-#  mark-user-as-spammer.pot (Mark User as Spammer 2.0.0)  #-#-#-#-#
+#. Plugin URI of the plugin/theme
+#. #-#-#-#-#  mark-user-as-spammer.pot (Mark User as Spammer 2.0.0)  #-#-#-#-#
+#. Author URI of the plugin/theme
+msgid "http://korobochkin.com/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"The ability to mark specific users as spammers like on Multisite install. "
+"Right now after account have been banned user can't log in. Even if they "
+"currently have active sessions (and admin area currently open) they will be "
+"force log out without opportunity to log in again."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Kolya Korobochkin"
+msgstr ""
