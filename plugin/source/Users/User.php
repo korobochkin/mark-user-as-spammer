@@ -17,7 +17,7 @@ class User {
 				break;
 
 			default:
-				return new \WP_Error( 'unkown_status', 'This status code not allowed.' );
+				return false;
 		}
 
 		$update = update_user_meta(
