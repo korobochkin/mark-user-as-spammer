@@ -12,17 +12,15 @@ The ability to mark specific users as spammers like on Multisite install.
 
 == Description ==
 
-The ability to mark specific users as spammers like on Multisite install. If you mark user as spammer he can't log in into WordPress and got an error shows up that account have been marked as spammer account. This behavior grabbed from WordPress Multisite install.
+The ability to mark specific users as spammers like on Multisite install. If you mark user as spammer he can't log in into WordPress and got an error shows up that account have been marked as spammer account.
 
-Helpfull if you want disable login for some user but don't want to delete account. Deleting account is not good idea because you can delete good account. Or delete spammer account but it can be mistake. After deleting you can't restore account but with this plugin you can ban or unban accounts anytime.
+Right now after account have been banned user can't log in. Even if they currently have active sessions (and admin area currenty open) they will be force log out without oportunity to log in again.
 
-You can ban or unban users on /wp-admin/users.php page by clicking links bellow username. Be careful, you can ban yourself, administrators or other highlevel users.
+Helpfull if you want disable any accounts but not want delete the account. Deleting account is not good idea because you can delete good account. After deleting you can't restore account but with this plugin you can ban or unban accounts anytime. You can ban or unban users on /wp-admin/users.php page by clicking links bellow username. Be careful, you can ban yourself, administrators or other highlevel users.
 
-You can also switch account status by manually editing `mark_user_as_spammer` user meta in `wp_usermeta` table. `1` — spammer. `0` — not spammer.
+You can also switch account status by manually editing `mark_user_as_spammer` meta in `wp_usermeta` table. `1` — spammer. `0` — not spammer.
 
-[Plugin on Github](https://github.com/korobochkin/mark-user-as-spammer)
-
-Photo on banner created by [Bastian Sara](https://stocksnap.io/photo/LVKUG7VU8F).
+[Plugin on Github](https://github.com/korobochkin/mark-user-as-spammer). Photo on banner created by [Bastian Sara](https://stocksnap.io/photo/LVKUG7VU8F).
 
 == Installation ==
 
@@ -49,7 +47,7 @@ Photo on banner created by [Bastian Sara](https://stocksnap.io/photo/LVKUG7VU8F)
 
 = Which information plugin stores in DB? =
 
-The plugin add only single user meta option to each user with meta_key equal 'mark_user_as_spammer'. On uninstall action plugin completely remove this metas for all users.
+The plugin adds only single meta option for each user (`mark_user_as_spammer`). On uninstall action plugin completely removes this metas for all users.
 
 == Changelog ==
 
