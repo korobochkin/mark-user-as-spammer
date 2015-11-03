@@ -14,7 +14,7 @@ The ability to mark specific users as spammers like on Multisite install.
 
 The ability to mark specific users as spammers like on Multisite install. Right now after account have been banned user can't log in. Even if they currently have active sessions (and admin area currently open) they will be force log out without opportunity to log in again.
 
-If you found any errors in this text (or on other plugin description tabs) please contact me directly via me@korobochkin.com or [submit a bug report on Github](https://github.com/korobochkin/mark-user-as-spammer/issues).
+If you found any errors in this text (or on other plugin description tabs) please contact me directly via me@korobochkin.com or [submit a bug report on Github](https://github.com/korobochkin/mark-user-as-spammer/issues). You can also help by translating this plugin.
 
 [Plugin on Github](https://github.com/korobochkin/mark-user-as-spammer). Photo on banner created by [Bastian Sara](https://stocksnap.io/photo/LVKUG7VU8F).
 
@@ -55,6 +55,11 @@ You can also switch account status by manually editing `mark_user_as_spammer` me
 
 == Changelog ==
 
+= 2.0.0 =
+* Force delete active user sessions immediately after click "ban" link.
+* Completely new plugin architecture.
+* API for any other plugins.
+
 = 1.0.2 =
 * Prepare URL before output it. This plugin doesn't have XSS vulnerability like many others plugins (because we use `wp_nonce_url()` before output the links) but page may look incorrect if you try to open something like `site.com/users.php?"><script>alert('hi')</script>`. Script not working (thanks `wp_nonce_url()`) but markup looks crashed.
 
@@ -68,6 +73,9 @@ You can also switch account status by manually editing `mark_user_as_spammer` me
 * First version of plugin.
 
 == Upgrade Notice ==
+
+= 2.0.0 =
+Force delete active user sessions immediately. Better plugin architecture and API for developers.
 
 = 1.0.2 =
 Security improvements release. Better output for the links.
