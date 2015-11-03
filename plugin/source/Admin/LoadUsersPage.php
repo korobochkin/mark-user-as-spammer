@@ -5,7 +5,7 @@ class LoadUsersPage {
 
 	public static $selectors;
 
-	public static function render() {
+	public static function catch_request() {
 		// Styles for banned accounts (red background)
 		add_action( 'admin_footer', array( __CLASS__, 'admin_footer' ) );
 
