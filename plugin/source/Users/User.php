@@ -32,7 +32,7 @@ class User {
 		return true;
 	}
 
-	public static function get_status( int $user_id ) {
+	public static function get_status( $user_id ) {
 		$user_status = get_user_option( self::BANNED_OPTION_NAME, $user_id, false );
 
 		if( $user_status === '1' ) {

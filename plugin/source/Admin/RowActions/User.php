@@ -4,14 +4,14 @@ namespace Korobochkin\MarkUserAsSpammer\Admin\RowActions;
 class User {
 
 	public static function add_actions( $actions, $user_object ) {
-		$meta = get_user_meta( $user_object->ID, \Korobochkin\MarkUserAsSpammer\Users\User::BANNED_OPTION_NAME, true);
+		$status = \Korobochkin\MarkUserAsSpammer\Users\User::get_status( $user_object->ID );
 
 		/*
 		 * By default all users are not spamers.
 		 * But if they have BANNED_OPTION_NAME equal to '1' (string) then this is a spammer account.
 		 */
 		$is_spammer = false;
-		if ( $meta === '1' ) {
+		if ( $status === '1' ) {
 			$is_spammer = true;
 			\Korobochkin\MarkUserAsSpammer\Admin\LoadUsersPage::$selectors[] = $user_object->ID;
 		}

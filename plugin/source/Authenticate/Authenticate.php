@@ -37,7 +37,7 @@ class Authenticate {
 			return;
 
 		$user = wp_get_current_user();
-		$user_status = get_user_option( \Korobochkin\MarkUserAsSpammer\Users\User::BANNED_OPTION_NAME, $user->ID, false );
+		$user_status = \Korobochkin\MarkUserAsSpammer\Users\User::get_status( $user->ID );
 
 		if( $user_status === '1' ) {
 			wp_logout();
