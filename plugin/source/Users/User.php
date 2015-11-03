@@ -5,19 +5,15 @@ class User {
 	const BANNED_OPTION_NAME = 'mark_user_as_spammer';
 
 	public static $statuses = array(
-		'not_a_spammer', // 0. Not spammer
-		'spammer'        // 1. Account locked. Spammer.
+		'0' => 'not_a_spammer', // 0. Not spammer
+		'1' => 'spammer'        // 1. Account locked. Spammer.
 	);
 
 	public static function set_status( $user_id, $status ) {
 		$status = (string) $status;
-		switch( $status ) {
-			case '1':
-			case '0':
-				break;
 
-			default:
-				return false;
+		if( !array_key_exists( $status, self::$statuses ) ) {
+			return false;
 		}
 
 		$update = update_user_meta(
@@ -25,11 +21,11 @@ class User {
 			self::BANNED_OPTION_NAME,
 			$status
 		);
-
-		if( !$update ) {
-			return false;
+		if( $update ) {
+			return true;
 		}
-		return true;
+
+		return false;
 	}
 
 	public static function get_status( $user_id ) {
