@@ -18,8 +18,6 @@ Right now after account have been banned user can't log in. Even if they current
 
 Helpfull if you want disable any accounts but not want delete the account. Deleting account is not good idea because you can delete good account. After deleting you can't restore account but with this plugin you can ban or unban accounts anytime. You can ban or unban users on /wp-admin/users.php page by clicking links bellow username. Be careful, you can ban yourself, administrators or other highlevel users.
 
-You can also switch account status by manually editing `mark_user_as_spammer` meta in `wp_usermeta` table. `1` — spammer. `0` — not spammer.
-
 [Plugin on Github](https://github.com/korobochkin/mark-user-as-spammer). Photo on banner created by [Bastian Sara](https://stocksnap.io/photo/LVKUG7VU8F).
 
 == Installation ==
@@ -48,6 +46,10 @@ You can also switch account status by manually editing `mark_user_as_spammer` me
 = Which information plugin stores in DB? =
 
 The plugin adds only single meta option for each user (`mark_user_as_spammer`). On uninstall action plugin completely removes this metas for all users.
+
+= How to manually edit account status?
+
+You can also switch account status by manually editing `mark_user_as_spammer` meta in `wp_usermeta` table. `1` — spammer. `0` — not spammer.
 
 == Changelog ==
 
