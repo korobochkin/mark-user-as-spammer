@@ -23,6 +23,8 @@ require_once 'vendor/autoload.php';
 $GLOBALS['MarkUserAsSpammerPlugin'] = new Plugin( __FILE__ );
 $GLOBALS['MarkUserAsSpammerPlugin']->run();
 
+register_uninstall_hook( __FILE__, array( 'Korobochkin\MarkUserAsSpammer\Uninstaller', 'uninstall') );
+
 // Exit from the file
 return;
 
@@ -310,5 +312,4 @@ class Mark_User_As_Spammer {
 }
 Mark_User_As_Spammer::run();
 
-register_uninstall_hook( __FILE__, array( 'Uninstaller', 'uninstall') );
 ?>

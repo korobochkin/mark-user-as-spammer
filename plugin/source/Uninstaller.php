@@ -12,7 +12,11 @@ class Uninstaller {
 	public static function uninstall() {
 		// The uninstall plugin must be this file
 		// The current user can activate plugins
-		if( __FILE__ != WP_UNINSTALL_PLUGIN || ! current_user_can( 'activate_plugins') ){
+		if(
+			$GLOBALS['MarkUserAsSpammerPlugin']->plugin_path != WP_UNINSTALL_PLUGIN
+			||
+			! current_user_can( 'activate_plugins')
+		){
 			return;
 		}
 
