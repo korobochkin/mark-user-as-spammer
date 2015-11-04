@@ -49,7 +49,7 @@ This plugin helpfull if you want disable any accounts but not want delete the ac
 
 The plugin adds only single meta option for each user (`mark_user_as_spammer`). On uninstall action plugin completely removes this metas for all users.
 
-= How to manually edit account status?
+= How to manually edit account status? =
 
 You can also switch account status by manually editing `mark_user_as_spammer` meta in `wp_usermeta` table. `1` — spammer. `0` — not spammer.
 
