@@ -1,6 +1,6 @@
 {
   "name": "mark-user-as-spammer",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "The ability to mark specific users as spammers like on Multisite install.",
   "main": "Gruntfile.js",
   "scripts": {
